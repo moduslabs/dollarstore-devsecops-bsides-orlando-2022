@@ -5,6 +5,7 @@
 
 Source code and documentation for the BSides Orlando 2022 (11/18 - 11/19) talk: DevSecOps on a $ store budget
 
+- [BSides Orlando 2022 Talk Details](#bsides-orlando-2022-talk-details)
 - [Getting Started](#getting-started)
 - [How it Works](#how-it-works)
 - [Developing](#developing)
@@ -15,12 +16,12 @@ Source code and documentation for the BSides Orlando 2022 (11/18 - 11/19) talk: 
 - [Licensing](#licensing)
 
 
-# BSides Orlando 2022 Talk Outline 
+# BSides Orlando 2022 Talk Details
 
-##Title: DevSecOps on a $ store budget
+## Title: DevSecOps on a $ store budget
 
 
-##Abstract
+##A bstract
 
 Security tooling can be expensive, very expensive. Never fear though, there are a multitude of cheap and open source options out there. You too can build a robust DevSecOps pipeline on a dollar store budget.
 
@@ -28,7 +29,7 @@ Covering everything from open source SAST tools to free secret scanning and Infr
 
 Some basic knowledge of DevOps and CI/CD would be useful but is not mandatory.
 
-##Description
+## Description
 
 This talk will walk the audience through how to build a variety of simple CI/CD pipelines with Jenkins and GitHub Actions. The CI/CD pipeline will demonstrate how to incorporate a number of security and code analysis tools including:
 
@@ -43,7 +44,7 @@ The talk will then wrap up by looking at Horusec an open source SAST platform th
 
 An example PHP application using Terraform Infrastructure-as-Code targeting an AWS environment will be used to demo the DevSecOps process to the audience. This code can be downloaded during the talk to allow participants to follow along in a hands on fashion.
 
-##Talk outline:
+## Talk outline:
 
 *Introduction
 *What is DevSecOps
@@ -59,7 +60,6 @@ An example PHP application using Terraform Infrastructure-as-Code targeting an A
 *Wrapping up with Horusec
 *Closing statement
 *QA
-
 
 
 # Getting Started

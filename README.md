@@ -21,7 +21,7 @@ Source code and documentation for the BSides Orlando 2022 (11/18 - 11/19) talk: 
 ## Title: DevSecOps on a $ store budget
 
 
-##A bstract
+## Abstract
 
 Security tooling can be expensive, very expensive. Never fear though, there are a multitude of cheap and open source options out there. You too can build a robust DevSecOps pipeline on a dollar store budget.
 
@@ -33,12 +33,17 @@ Some basic knowledge of DevOps and CI/CD would be useful but is not mandatory.
 
 This talk will walk the audience through how to build a variety of simple CI/CD pipelines with Jenkins and GitHub Actions. The CI/CD pipeline will demonstrate how to incorporate a number of security and code analysis tools including:
 
-*Cloc - What’s in the repository?
-*Checkov - Bridgecrews free IaC scanner
-*PHPMetrics - considering Cyclomatic Complexity from a security perspective
-*Tortufo - GoDaddy’s free Secrets Scanning tool
-*Git-secrets - Prevent your AWS secrets from hitting the repository
-*CodeQL and Dependabot - free scanning of open source repos in GitHub
+* Cloc - What’s in the repository?
+
+* Checkov - Bridgecrews free IaC scanner
+
+* PHPMetrics - considering Cyclomatic Complexity from a security perspective
+
+* Tortufo - GoDaddy’s free Secrets Scanning tool
+
+* Git-secrets - Prevent your AWS secrets from hitting the repository
+
+* CodeQL and Dependabot - free scanning of open source repos in GitHub
 
 The talk will then wrap up by looking at Horusec an open source SAST platform that incorporates a variety of security and linting tools in a container based environment.
 
@@ -46,20 +51,33 @@ An example PHP application using Terraform Infrastructure-as-Code targeting an A
 
 ## Talk outline:
 
-*Introduction
-*What is DevSecOps
-*Commercial tools aren't the only option
-*Jenkins overview
-*A walk through our example repository
-*Scanning a repository with cloc
-*Reviewing Terraform with Checkov
-*Auditing PHP with PHPMetrics
-*Scan for secrets using Tortufo
-*Pre-commit hooks with git-secrets
-*Open source Shift Left with GitHub
-*Wrapping up with Horusec
-*Closing statement
-*QA
+* Introduction
+
+* What is DevSecOps
+
+* Commercial tools aren't the only option
+
+* Jenkins overview
+
+* A walk through our example repository
+
+* Scanning a repository with cloc
+
+* Reviewing Terraform with Checkov
+
+* Auditing PHP with PHPMetrics
+
+* Scan for secrets using Tortufo
+
+* Pre-commit hooks with git-secrets
+
+* Open source Shift Left with GitHub
+
+* Wrapping up with Horusec
+
+* Closing statement
+
+* QA
 
 
 # Getting Started

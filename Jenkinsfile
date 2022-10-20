@@ -8,16 +8,32 @@ pipeline {
 
     stages {
         stage('Install') {
-            steps {
-                echo 'Installing CLOC'
-                sh 'brew install cloc'
-                echo 'Installing Checkov'
-                sh 'brew install checkov'
-                echo 'Installing PHPMetrics'
-                sh 'brew install composer'
-                sh 'composer global require \'phpmetrics/phpmetrics\'' 
-                echo 'Installing Tartufo'
-                sh 'pip3 install tartufo'
+            stages {
+                stage ('CLOC Installation'){
+                    steps {
+                        echo 'Installing CLOC'
+                        sh 'brew install cloc'
+                    }
+                }
+                stage ('Checkov Installation'){
+                    steps {
+                        echo 'Installing Checkov'
+                        sh 'brew install checkov'
+                    }
+                }
+                stage ('PHPMetrics Installation'){
+                    steps {
+                        echo 'Installing PHPMetrics'
+                        sh 'brew install composer'
+                        sh 'composer global require \'phpmetrics/phpmetrics\'' 
+                    }
+                }
+                stage ('Tartufo Installation'){
+                    steps {
+                        echo 'Installing Tartufo'
+                        sh 'pip3 install tartufo'
+                    }
+                }
             }
         }
         stage('Execute') {

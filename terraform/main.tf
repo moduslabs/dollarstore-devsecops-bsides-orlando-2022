@@ -16,6 +16,20 @@ provider "aws" {
 resource "aws_instance" "app_server" {
   ami           = "ami-830c94e3"
   instance_type = "t2.micro"
+
+  #Encryption example
+  root_block_device {
+      encrypted = true
+  }
+
+  #Monitoring example
+  monitoring    = true
+
+
+  #EBS Optimization example
+  ebs_optimized = true
+  
+  #Metadata options example
   metadata_options {
       http_endpoint = "disabled"
   }

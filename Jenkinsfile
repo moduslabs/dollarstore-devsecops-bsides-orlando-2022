@@ -3,7 +3,7 @@ pipeline {
 
     environment {
        CHECKOV_API_KEY = credentials('checkov-api-key')
-       PATH = "/usr/local/bin:${env.PATH}"
+       PATH = "~/.composer/vendor/bin:/usr/local/bin:${env.PATH}"
     }
 
     stages {

@@ -25,7 +25,7 @@ pipeline {
                 echo 'Executing Checkov..'
                 sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
                 echo 'Executing PHPMetrics'
-                sh 'phpmetrics --report-html=bsides-report.html'
+                sh 'phpmetrics ./php --report-html=bsides-report.html'
             }
         }
         stage('Deploy') {

@@ -33,5 +33,10 @@ pipeline {
 
             }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying PHP App'
+            }
+        }
     }
 }

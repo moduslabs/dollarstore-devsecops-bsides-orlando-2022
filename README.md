@@ -10,7 +10,7 @@ Source code and documentation for the BSides Orlando 2022 (11/18 - 11/19) talk: 
 - [How it Works](#how-it-works)
 - [Developing](#developing)
   - [Prerequisites](#prerequisites)
-  - [Testing](#testing)
+  - [Running the Pipeline](#running-the-pipelines)
   - [Contributing](#contributing)
 - [Modus Create](#modus-create)
 - [Licensing](#licensing)
@@ -82,15 +82,57 @@ An example PHP application using Terraform Infrastructure-as-Code targeting an A
 
 # Getting Started
 
-{Minimal steps required for a quick software trial.}
 
-```js
-import { Fantastico } from '@modus/awesome-solution';
+## Local setup.
 
-const amazing = new Fantastico();
+To kick the the tires on the application and the pipeline you can install Jenkins locally.
 
-export default amazing;
+Jenkins install instructions can be found at: https://www.jenkins.io/doc/book/installing/
+
+### MacOS (Brew)
+
+
+Install the LTS version:
+
 ```
+brew install jenkins-lts
+```
+
+Once installed, start it up e.g.
+
+```
+brew services start jenkins-lts
+```
+
+Navigate to:
+
+```
+http://localhost:8080
+```
+ 
+You will now be prompted to enter the default password. This will be stored in a location shared with you on
+the webpage and will be in a format similar to:
+
+```
+/Users/<user>/.jenkins/secrets/initialAdminPassword
+```
+
+Using this password you should now be logged in, and can configure Jenkins, change the password and get started.
+
+The default plugin installation option presented initially should be sufficent for this talk. This will also allow you to 
+setup a new admin user.
+ 
+
+
+### Windows
+
+TBD
+
+### Linux
+
+TBD
+
+
 
 # How it works
 
@@ -98,15 +140,127 @@ export default amazing;
 
 # Developing
 
-{Show how engineers can set up a development environment and contribute.}
 
 ## Prerequisites
 
-{Explain the prerequisites}
+If you want to follow along locally you will need:
 
-## Testing
+1. Jenkins setup locally
 
-{Notes on testing}
+2. A forked copy of the course code 
+
+3. A bridgecrew account - you can set this up with your GitHub user
+
+
+To follow along in the cloud, you will need:
+
+1. An AWS account
+
+2. A forked copy of the source code 
+
+3. A bridgecrew account - you can set this up with your GitHub user
+
+## Configure the Pipeline (Locally)
+
+1. Fork and clone this repository (you'll need it shortly)
+
+2. Login to Jenkins
+
+3. Call your pipeline bsidesorlando2022
+
+4. Description - add a description of your choosing
+
+5. Under pipeline select `Pipeline script from SCM`
+
+6. Select `Git` from SCM and add the repo location. Note, if you have a private fork you will need to enter login credentials 
+
+7. Add the path to the Jenkinsfile 
+
+8. Save the file. 
+
+9. `Build Now`
+
+10. Expect to see a few errors, as we need to generate an API key for Checkov.
+
+## The PHP Application
+
+Based off of a simple tutorial here: https://code.tutsplus.com/tutorials/how-to-build-a-simple-rest-api-in-php--cms-37000
+
+## Running the Pipelines
+
+Start with adding in an API key.
+
+Add the Env var to Jenkins:
+
+`This project is parameterized`
+
+Select: `Credentials parameter`
+
+Create a Jenkins credential:
+
+`Jenkins Credentials Provider: Jenkins`
+
+1. Domain, leave default
+
+2. Kind - secret text
+
+3. Scope: Global
+
+4. Secret - paste API key
+
+5. ID: checkov-api-key
+
+6. Description - say what it is
+
+Pop up closes, set the `Default Value` to the BSides API Key 
+
+
+Edit the Jenkins file and update the Checkov call to include your API key environment var name if you called it something different.
+
+
+Run build with Parameters.
+
+View Console log, should see some errors. We need to fix these!
+
+
+### Cloc Stage
+
+Will see files in repo.
+
+
+### Checov stage
+
+Will see errors in Terraform files.
+
+These are:
+
+<list>.
+
+They are fixed by doing the following:
+
+
+<fixes>
+
+
+### PHPMetrics
+
+https://phpmetrics.org/index.html
+
+Install composer
+
+Install PHpMetrics
+
+Execute via Pipeline against target code base.
+
+
+
+### Tartufo 
+
+https://tartufo.readthedocs.io/en/stable/
+
+
+
+
 
 ## Contributing
 

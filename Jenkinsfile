@@ -28,11 +28,9 @@ pipeline {
                 sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
                 echo 'Executing PHPMetrics'
                 sh 'phpmetrics ./php --report-html=bsides-report.html'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                echo 'Executing Tartufo'
+                sh 'tartufo scan-folder ./php'
+
             }
         }
     }

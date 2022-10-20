@@ -3,13 +3,13 @@ pipeline {
 
     environment {
        CHECKOV_API_KEY = credentials('checkov-api-key')
-       PATH = '/usr/local/bin:${env.PATH}'
+       PATH = "/usr/local/bin:${env.PATH}"
     }
 
     stages {
         stage('Install') {
             steps {
-                echo 'PATH is: ${env.PATH}'
+                echo "${env.PATH}"
                 echo 'Installing CLOC'
                 sh '/usr/local/bin/brew install cloc'
                 echo 'Installing Checkov'

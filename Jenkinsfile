@@ -5,8 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'brew install cloc'
-                sh 'cloc ./php'
+                sh '/usr/local/bin/brew install cloc'
+                sh '/usr/local/bin/cloc ./php'
             }
         }
         stage('Test') {

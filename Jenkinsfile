@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+       CHECKOV_API_KEY = credentials('checkov-api-key')
+    }
+
     stages {
         stage('Install') {
             steps {
@@ -14,6 +18,8 @@ pipeline {
             steps {
                 echo 'Executing..'
                 sh '/usr/local/bin/cloc ./php'
+                echo 'Executing Checkov..'
+                sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
             }
         }
         stage('Deploy') {

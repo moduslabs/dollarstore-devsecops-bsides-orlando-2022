@@ -9,22 +9,21 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                echo "${env.PATH}"
                 echo 'Installing CLOC'
-                sh '/usr/local/bin/brew install cloc'
+                sh 'brew install cloc'
                 echo 'Installing Checkov'
-                sh '/usr/local/bin/brew install checkov'
+                sh 'brew install checkov'
                 echo 'Installing PHPMetrics'
-                sh '/usr/local/bin/brew install composer'
-                sh '/usr/local/bin/composer global require \'phpmetrics/phpmetrics\'' 
+                sh 'brew install composer'
+                sh 'composer global require \'phpmetrics/phpmetrics\'' 
             }
         }
         stage('Execute') {
             steps {
                 echo 'Executing..'
-                sh '/usr/local/bin/cloc ./php'
+                sh 'cloc ./php'
                 echo 'Executing Checkov..'
-                sh '/usr/local/bin/checkov -d . --bc-api-key $CHECKOV_API_KEY'
+                sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
             }
         }
         stage('Deploy') {

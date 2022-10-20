@@ -12,6 +12,8 @@ pipeline {
                 sh '/usr/local/bin/brew install cloc'
                 echo 'Installing Checkov'
                 sh '/usr/local/bin/brew install checkov'
+                echo 'Installing PHPMetrics'
+                sh '/user/local/bin/brew install phpmetrics'
             }
         }
         stage('Execute') {

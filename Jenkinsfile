@@ -19,7 +19,7 @@ pipeline {
                 echo 'Executing..'
                 sh '/usr/local/bin/cloc ./php'
                 echo 'Executing Checkov..'
-                sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
+                sh '/usr/local/bin/checkov -d . --bc-api-key $CHECKOV_API_KEY'
             }
         }
         stage('Deploy') {

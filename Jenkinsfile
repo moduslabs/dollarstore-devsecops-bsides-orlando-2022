@@ -16,6 +16,8 @@ pipeline {
                 echo 'Installing PHPMetrics'
                 sh 'brew install composer'
                 sh 'composer global require \'phpmetrics/phpmetrics\'' 
+                echo 'Installing Tartufo'
+                sh 'pip3 install tartufo'
             }
         }
         stage('Execute') {

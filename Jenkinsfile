@@ -14,7 +14,7 @@ pipeline {
                 sh '/usr/local/bin/brew install checkov'
                 echo 'Installing PHPMetrics'
                 sh '/usr/local/bin/brew install composer'
-                sh 'composer global require \'phpmetrics/phpmetrics\'' 
+                sh '/usr/local/bin/composer global require \'phpmetrics/phpmetrics\'' 
             }
         }
         stage('Execute') {

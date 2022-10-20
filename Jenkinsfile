@@ -2,16 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Install') {
             steps {
-                echo 'Building..'
+                echo 'Installing CLOC'
                 sh '/usr/local/bin/brew install cloc'
-                sh '/usr/local/bin/cloc ./php'
+                echo 'Installing Checkov'
+                sh '/usr/local/bin/brew install checkov'
             }
         }
-        stage('Test') {
+        stage('Execute') {
             steps {
-                echo 'Testing..'
+                echo 'Executing..'
+                sh '/usr/local/bin/cloc ./php'
             }
         }
         stage('Deploy') {

@@ -13,7 +13,7 @@ pipeline {
                 echo 'Installing Checkov'
                 sh '/usr/local/bin/brew install checkov'
                 echo 'Installing PHPMetrics'
-                sh '/usr/local/bin/brew install phpmetrics'
+                sh '/usr/local/bin/brew install composer'
             }
         }
         stage('Execute') {

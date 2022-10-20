@@ -20,10 +20,12 @@ pipeline {
         }
         stage('Execute') {
             steps {
-                echo 'Executing..'
+                echo 'Executing CLOC'
                 sh 'cloc ./php'
                 echo 'Executing Checkov..'
                 sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
+                echo 'Executing PHPMetrics'
+                sh 'phpmetrics --report-html=bsides-report.html'
             }
         }
         stage('Deploy') {

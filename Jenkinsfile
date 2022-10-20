@@ -5,6 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                # MacOS
+                sh 'brew install cloc'
+                sh 'cloc .'
             }
         }
         stage('Test') {

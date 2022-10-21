@@ -18,9 +18,9 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
 
   #Encryption example
-  root_block_device {
-      encrypted = true
-  }
+  #root_block_device {
+  #    encrypted = true
+  #}
 
   #Monitoring example
   monitoring    = true

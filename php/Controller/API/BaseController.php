@@ -3,11 +3,11 @@ class BaseController
 {
     /**
      * __call magic method.
-     * Handle page not found
+     * Handle endpoint not found
      */
     public function __call($name, $arguments)
     {
-        $this->sendOutput('', array('HTTP/1.1 404 Not Found'));
+        $this->returnData('', array('HTTP/1.1 404 Not Found'));
     }
  
     /**
@@ -35,12 +35,12 @@ class BaseController
     }
  
     /**
-     * Send API output.
+     * Return API output.
      *
      * @param mixed  $data
      * @param string $httpHeader
      */
-    protected function sendOutput($data, $httpHeaders=array())
+    protected function returnData($data, $httpHeaders=array())
     {
         header_remove('Set-Cookie');
  

@@ -11,7 +11,7 @@ if ((isset($uri[2]) && $uri[2] != 'user') || !isset($uri[3])) {
  
 require PROJECT_ROOT_PATH . "/Controller/API/UserController.php";
  
-$objFeedController = new UserController();
+$objUserController = new UserController();
 $strMethodName = $uri[3] . 'Action';
-$objFeedController->{$strMethodName}();
+$objUserController->{$strMethodName}();
 ?>

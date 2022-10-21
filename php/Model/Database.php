@@ -5,10 +5,11 @@ class Database
  
     public function __construct()
     {
+        /* Testing:  password was password123 */
         try {
             $this->connection = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE_NAME);
          
-            if ( mysqli_connect_errno()) {
+            if (mysqli_connect_errno()) {
                 throw new Exception("Could not connect to database.");   
             }
         } catch (Exception $e) {
@@ -16,38 +17,38 @@ class Database
         }           
     }
  
-    public function select($query = "" , $params = [])
+    public function select($query = "",$params = [])
     {
         try {
-            $stmt = $this->executeStatement( $query , $params );
-            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);               
-            $stmt->close();
+            $execquery = $this->executeQuery($query,$params);
+            $result = $execquery->get_result()->fetch_all(MYSQLI_ASSOC);               
+            $execquery->close();
  
             return $result;
         } catch(Exception $e) {
-            throw New Exception( $e->getMessage() );
+            throw New Exception($e->getMessage());
         }
         return false;
     }
  
-    private function executeStatement($query = "" , $params = [])
+    private function executeQuery($query="", $params=[])
     {
         try {
-            $stmt = $this->connection->prepare( $query );
+            $execquery = $this->connection->prepare($query);
  
-            if($stmt === false) {
-                throw New Exception("Unable to do prepared statement: " . $query);
+            if($execquery === false) {
+                throw New Exception("Unable execute: " . $query);
             }
  
             if( $params ) {
-                $stmt->bind_param($params[0], $params[1]);
+                $execquery->bind_param($params[0],$params[1]);
             }
  
-            $stmt->execute();
+            $execquery->execute();
  
-            return $stmt;
+            return $execquery;
         } catch(Exception $e) {
-            throw New Exception( $e->getMessage() );
+            throw New Exception($e->getMessage());
         }   
     }
 }

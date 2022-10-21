@@ -5,6 +5,7 @@ class UserModel extends Database
 {
     public function getUsers($limit)
     {
+        /* hmm did I fix the SQL injection here? */
         return $this->select("SELECT * FROM users ORDER BY user_id ASC LIMIT ?", ["i", $limit]);
     }
 }

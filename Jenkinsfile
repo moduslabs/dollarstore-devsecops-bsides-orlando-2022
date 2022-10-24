@@ -37,16 +37,31 @@ pipeline {
             }
         }
         stage('Execute') {
-            steps {
-                echo 'Executing CLOC'
-                sh 'cloc ./php'
-                echo 'Executing Checkov..'
-                sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
-                echo 'Executing PHPMetrics'
-                sh 'phpmetrics ./php --report-html=bsides-report.html'
-                echo 'Executing Tartufo'
-                sh 'tartufo scan-folder ./php'
-
+            stages {
+                stage ('Execute CLOC scan'){
+                    steps {
+                        echo 'Executing CLOC'
+                        sh 'cloc ./php'
+                    }
+                }
+                stage ('Execute Checkov Scan'){
+                    steps {
+                        echo 'Executing Checkov..'
+                        sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
+                    }
+                }
+                stage ('Execute PHPMetrics Scan'){
+                    steps {
+                        echo 'Executing PHPMetrics'
+                        sh 'phpmetrics ./php --report-html=bsides-report.html'
+                    }
+                }
+                stage ('Executing Tartufo Scan'){
+                    steps {
+                        echo 'Executing Tartufo'
+                        sh 'tartufo scan-folder ./php'
+                    }
+                }
             }
         }
         stage('Deploy') {

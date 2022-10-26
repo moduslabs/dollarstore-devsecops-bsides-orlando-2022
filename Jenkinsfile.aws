@@ -11,7 +11,11 @@ pipeline {
                 stage ('CLOC Installation'){
                     steps {
                         echo 'Checking if CLOC present'
-                        sh 'if [ -d "cloc" ]; then rm -rf cloc fi'
+                        sh '''
+                           if [ -d "cloc" ]; then 
+                               rm -rf cloc 
+                           fi
+                           '''
                         sh 'git clone https://github.com/AlDanial/cloc.git'
                     }
                 }

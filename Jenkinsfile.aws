@@ -11,7 +11,7 @@ pipeline {
                 stage ('CLOC Installation'){
                     steps {
                         echo 'Installing CLOC'
-                        'sudo yum install cloc'
+                        sh 'sudo yum install cloc'
                     }
                 }
                 stage ('Checkov Installation'){

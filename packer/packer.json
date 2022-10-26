@@ -1,0 +1,45 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs", 
+            "access_key": "{{user `access_key` }}",
+            "secret_key": "{{user `secret_key` }}",
+            "token": "{{user `security_token` }}",
+            "region": "us-east-1",
+            "ami_name": "JenkinsAMI",
+            "source_ami": "{{user `source_ami` }}",
+            "vpc_filter": {
+                "filters": {
+                    "tag:Name": "jenkins-server-vpc",
+                    "isDefault": "false"
+                }
+            },
+            "subnet_filter": {
+                "filters": {
+                    "tag:Name": "jenkins-server-public-subnet"
+                },
+                "random": true
+            },
+            "instance_type" : "t2.micro",
+            "ssh_username" : "ec2-user"
+         }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "setup.sh"
+        } 
+    ],
+
+    "post-processors": [
+        {
+            "type": "manifest",
+            "output": "out.json"
+        }
+     ],
+
+     "sensitive-variables": [
+         "secret_key", "access_key"
+     ]
+}

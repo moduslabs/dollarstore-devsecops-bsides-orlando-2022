@@ -1,0 +1,8 @@
+{ 
+    "description": "JenkinsServer", 
+    "access_key": "key name goes here",
+    "secret_key": "secret key goes here", 
+    "security_token: "if using SSO"
+    "source_ami": "ami-09d3b3274b6c5d4aa",
+    "vpc_id": "target VPC to run packer against"
+}

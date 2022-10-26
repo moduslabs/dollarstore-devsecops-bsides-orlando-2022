@@ -182,6 +182,17 @@ To follow along in the cloud, you will need:
 
 10. Expect to see a few errors, as we need to generate an API key for Checkov.
 
+## The Terraform code
+
+A separate README is provided with a detailed description of the Terraform code and what it is does.
+
+From a high-level the Terraform files are responsible for building:
+
+1. The S3 bucket for storing state in AWS
+2. The Jenkins server and associated infrastructure 
+3. The PHP server for running our vulnerable webapp.
+
+
 ## The PHP Application
 
 Based off of a simple tutorial here: https://code.tutsplus.com/tutorials/how-to-build-a-simple-rest-api-in-php--cms-37000

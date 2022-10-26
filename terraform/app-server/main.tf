@@ -9,32 +9,37 @@ terraform {
   required_version = ">= 1.2.0"
 }
 
+
+variable "aws_region" { 
+    default = "us-east-1" 
+ } 
+
 provider "aws" {
-  region  = "us-east-1"
+    region  = var.aws_region
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
+    ami           = "ami-830c94e3"
+    instance_type = "t2.micro"
 
-  #Encryption example
-  root_block_device {
-      encrypted = true
-  }
+    #Encryption example
+    root_block_device {
+        encrypted = true
+    }
 
-  #Monitoring example
-  monitoring    = true
+    #Monitoring example
+    monitoring    = true
 
 
-  #EBS Optimization example
-  ebs_optimized = true
+    #EBS Optimization example
+    ebs_optimized = true
   
-  #Metadata options example
-  metadata_options {
-      http_endpoint = "disabled"
-  }
+    #Metadata options example
+    metadata_options {
+       http_endpoint = "disabled"
+    }
 
-  tags = {
-    Name = "Vulnerable PHP Server"
-  }
+    tags = {
+         Name = "Vulnerable PHP Server"
+    }
 }

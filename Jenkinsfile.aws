@@ -44,7 +44,7 @@ pipeline {
                 stage ('Execute CLOC scan'){
                     steps {
                         echo 'Executing CLOC'
-                        sh 'cd cloc'
+                        sh 'ls && cd cloc && ls'
                         sh './cloc ../php'
                     }
                 }

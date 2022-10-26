@@ -10,8 +10,8 @@ pipeline {
             stages {
                 stage ('CLOC Installation'){
                     steps {
-                        echo 'Installing CLOC'
-                        sh 'sudo yum install cloc -y'
+                        echo 'Checking CLOC present'
+                        sh 'git clone git@github.com:AlDanial/cloc.git'
                     }
                 }
                 stage ('Checkov Installation'){
@@ -23,8 +23,6 @@ pipeline {
                 stage ('PHPMetrics Installation'){
                     steps {
                         echo 'Installing PHPMetrics'
-                        sh 'cd ~ && sudo curl -sS https://getcomposer.org/installer | sudo php'
-                        sh 'sudo mv composer.phar /usr/local/bin/composer && sudo ln -s /usr/local/bin/composer /usr/bin/composer'
                         sh 'composer global require \'phpmetrics/phpmetrics\'' 
                     }
                 }
@@ -41,7 +39,8 @@ pipeline {
                 stage ('Execute CLOC scan'){
                     steps {
                         echo 'Executing CLOC'
-                        sh 'cloc ./php'
+                        sh 'cd cloc'
+                        sh './cloc ../php'
                     }
                 }
                 stage ('Execute Checkov Scan'){

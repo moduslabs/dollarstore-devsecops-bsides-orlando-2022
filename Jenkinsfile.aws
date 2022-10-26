@@ -28,7 +28,7 @@ pipeline {
                 stage ('PHPMetrics Installation'){
                     steps {
                         echo 'Installing PHPMetrics'
-                        sh 'composer global require \'phpmetrics/phpmetrics\'' 
+                        sh 'composer global require \'phpmetrics/phpmetrics[v0.0.7]\'' 
                     }
                 }
                 stage ('Tartufo Installation'){

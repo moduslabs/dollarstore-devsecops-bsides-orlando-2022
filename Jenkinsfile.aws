@@ -11,7 +11,7 @@ pipeline {
                 stage ('CLOC Installation'){
                     steps {
                         echo 'Checking CLOC present'
-                        sh 'git clone git@github.com:AlDanial/cloc.git'
+                        sh 'git clone https://github.com/AlDanial/cloc.git'
                     }
                 }
                 stage ('Checkov Installation'){

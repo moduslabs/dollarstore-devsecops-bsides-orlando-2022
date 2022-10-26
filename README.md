@@ -189,8 +189,9 @@ A separate README is provided with a detailed description of the Terraform code 
 From a high-level the Terraform files are responsible for building:
 
 1. The S3 bucket for storing state in AWS
-2. The Jenkins server and associated infrastructure 
-3. The PHP server for running our vulnerable webapp.
+2. The Jenkins server and associated infrastructure
+3. The Jenkins AMI 
+4. The PHP server for running our vulnerable webapp.
 
 
 ## The PHP Application

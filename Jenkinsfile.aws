@@ -52,7 +52,7 @@ pipeline {
                         script {
                             docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
                                 try {
-                                    sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY --skip-check CKV_DOCKER* --use-enforcement-rules -o cli -o junitxml --output-file-path console,results.xml'
+                                    sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY --skip-check CKV_DOCKER*,CKV_SECRET_6 --use-enforcement-rules -o cli -o junitxml --output-file-path console,results.xml'
                                     junit skipPublishingChecks: true, testResults: 'results.xml'
                                 } catch (err) {
                                     junit skipPublishingChecks: true, testResults: 'results.xml'

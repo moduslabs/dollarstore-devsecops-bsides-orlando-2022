@@ -16,6 +16,7 @@ resource "aws_s3_bucket" "terraform_state" {
     bucket = "bsides-orlando-terraform-state"
 
     #checkov:skip=CKV_AWS_144:Not including cross-region replication as an example
+    #checkov:skip=CKV_AWS_145:Using a different encryption SSE algo as an example
     lifecycle { 
         prevent_destroy = true 
     } 
@@ -44,7 +45,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "state_encryption"
     bucket = aws_s3_bucket.terraform_state.bucket
     rule { 
         apply_server_side_encryption_by_default { 
-            sse_algorithm = "AES256" 
+            sse_algorithm = "AES256"
         } 
     } 
 }

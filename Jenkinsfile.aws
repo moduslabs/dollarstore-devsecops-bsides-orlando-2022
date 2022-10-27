@@ -76,7 +76,11 @@ pipeline {
                 stage ('Executing Tartufo Scan'){
                     steps {
                         echo 'Executing Tartufo'
-                        sh 'tartufo scan-folder ./php'
+                        script {
+                            docker.image('godaddy/tartufo:latest').inside("--entrypoint=''") {
+                                sh 'tartufo scan-local-repo .'
+                            }
+                        }
                     }
                 }
             }

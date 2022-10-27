@@ -47,3 +47,27 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "state_encryption"
         } 
     } 
 }
+
+
+/**
+Adding some example logging infrastructure 
+which can be used to demonstrate a Checkov rule fail
+when disabled
+**/
+resource "aws_s3_bucket" "log_bucket" {
+    bucket = "log-bucket"
+}
+
+resource "aws_s3_bucket_acl" "log_bucket_acl" {
+    bucket = aws_s3_bucket.log_bucket.id
+    acl = "log-delivery-write"
+}
+
+resource "aws_s3_bucket_logging" "log_mapping" {
+  bucket = aws_s3_bucket.terraform_state.id
+
+  target_bucket = aws_s3_bucket.log_bucket.id
+  target_prefix = "log/"
+}
+
+

@@ -6,47 +6,14 @@ pipeline {
     }
 
     stages {
-        stage('Install') {
-            stages {
-                stage ('CLOC Installation'){
-                    steps {
-                        echo 'Checking if CLOC present'
-                        sh '''
-                           if [ -d "cloc" ]; then 
-                               rm -rf cloc 
-                           fi
-                           '''
-                        sh 'git clone https://github.com/AlDanial/cloc.git'
-                    }
-                }
-                stage ('Checkov Installation'){
-                    steps {
-                        echo 'Installing Checkov'
-                        sh 'pip3 install checkov'
-                    }
-                }
-                stage ('PHPMetrics Installation'){
-                    steps {
-                        echo 'Installing PHPMetrics'
-                        sh 'composer global require \'phpmetrics/phpmetrics:v0.0.6\''
-                    }
-                }
-                stage ('Tartufo Installation'){
-                    steps {
-                        echo 'Installing Tartufo'
-                        sh 'pip3 install tartufo'
-                    }
-                }
-            }
-        }
-        stage('Execute') {
+        stage('Execute Scans') {
             stages {
                 stage ('Execute CLOC scan'){
                     steps {
                         echo 'Executing CLOC'
                         script {
                             docker.image('aldanial/cloc:latest').inside("--entrypoint=''") {
-                                sh 'cloc ./php'
+                                sh 'aldanial/cloc ./php'
                             }
                         }
                     }

@@ -49,7 +49,7 @@ pipeline {
                         echo 'Executing Tartufo'
                         script {
                             docker.image('godaddy/tartufo:latest').inside("--entrypoint=''") {
-                                sh 'tartufo scan-local-repo .'
+                                sh '/venv/bin/tartufo scan-local-repo .'
                             }
                         }
                     }

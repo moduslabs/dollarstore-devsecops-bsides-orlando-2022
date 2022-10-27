@@ -48,17 +48,20 @@ pipeline {
                     }
                 }
                 stage ('Execute Checkov Scan'){
+                    agent{
+                        docker {
+                            image 'bridgecrew/checkov:latest'
+                        }
+                    }
                     steps {
                         script {
                             echo 'Executing Checkov..'
-                            docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
-                                try {
-                                    sh 'checkov -d . --use-enforcement-rules -o cli -o junitxml --output-file-path console,results.xml'
-                                    junit skipPublishingChecks: true, testResults: 'results.xml'
-                                } catch (err) {
-                                    junit skipPublishingChecks: true, testResults: 'results.xml'
-                                    throw err
-                                }
+                            try {
+                                sh 'checkov -d . --use-enforcement-rules -o cli -o junitxml --output-file-path console,results.xml'
+                                junit skipPublishingChecks: true, testResults: 'results.xml'
+                            } catch (err) {
+                                junit skipPublishingChecks: true, testResults: 'results.xml'
+                                throw err
                             }
                         }
                     }

@@ -12,8 +12,9 @@ pipeline {
                     steps {
                         echo 'Executing CLOC'
                         script {
+                            docker run --rm -v $PWD:/tmp aldanial/cloc
                             docker.image('aldanial/cloc:latest').inside("--entrypoint=''") {
-                                sh 'aldanial/cloc ./php'
+                                sh '/usr/src/cloc ./php'
                             }
                         }
                     }

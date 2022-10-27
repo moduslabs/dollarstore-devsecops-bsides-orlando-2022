@@ -68,7 +68,7 @@ pipeline {
                         echo 'Executing PHPMetrics'
                         script {
                             docker.image('herloct/phpmetrics:latest').inside("--entrypoint=''") {
-                                sh 'php ./vendor/bin/phpmetrics --report-html=myreport ./php'
+                                sh 'sudo php ./vendor/bin/phpmetrics --report-html=bsidesorlandoreport ./php'
                             }
                         }
                     }

@@ -15,6 +15,7 @@ provider "aws" {
 resource "aws_s3_bucket" "terraform_state" { 
     bucket = "bsides-orlando-terraform-state"
 
+    #checkov:skip=CKV_AWS_144:Not including cross-region replication as an example
     lifecycle { 
         prevent_destroy = true 
     } 

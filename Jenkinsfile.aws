@@ -49,8 +49,18 @@ pipeline {
                 }
                 stage ('Execute Checkov Scan'){
                     steps {
-                        echo 'Executing Checkov..'
-                        sh 'checkov -d . --bc-api-key $CHECKOV_API_KEY'
+                        script {
+                            echo 'Executing Checkov..'
+                            docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
+                                try {
+                                    sh 'checkov -d . --use-enforcement-rules -o cli -o junitxml --output-file-path console,results.xml'
+                                    junit skipPublishingChecks: true, testResults: 'results.xml'
+                                } catch (err) {
+                                    junit skipPublishingChecks: true, testResults: 'results.xml'
+                                    throw err
+                                }
+                            }
+                        }
                     }
                 }
                 stage ('Execute PHPMetrics Scan'){

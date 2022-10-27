@@ -49,6 +49,7 @@ pipeline {
                 }
                 stage ('Execute Checkov Scan'){
                     steps {
+                        echo 'Executing Checkov Scan'
                         script {
                             docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
                                 try {
@@ -65,7 +66,11 @@ pipeline {
                 stage ('Execute PHPMetrics Scan'){
                     steps {
                         echo 'Executing PHPMetrics'
-                        sh 'phpmetrics ./php --report-html=bsides-report.html'
+                        script {
+                            docker.image('herloct/phpmetrics:latest').inside("--entrypoint=''") {
+                                php ./vendor/bin/phpmetrics --report-html=myreport ./php
+                            }
+                        }
                     }
                 }
                 stage ('Executing Tartufo Scan'){

@@ -44,7 +44,11 @@ pipeline {
                 stage ('Execute CLOC scan'){
                     steps {
                         echo 'Executing CLOC'
-                        sh 'cd cloc && ./cloc ../php'
+                        script {
+                            docker.image('aldanial/cloc:latest').inside("--entrypoint=''") {
+                                sh 'cloc ./php'
+                            }
+                        }
                     }
                 }
                 stage ('Execute Checkov Scan'){

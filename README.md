@@ -132,6 +132,12 @@ TBD
 
 TBD
 
+### AWS
+
+Dashboard > Manage Jenkins > Manage Plugins > Available (tab) > docker-workflow.
+
+
+
 
 
 # How it works
@@ -270,7 +276,7 @@ Execute via Pipeline against target code base.
 
 https://tartufo.readthedocs.io/en/stable/
 
-
+tartufo.toml
 
 
 

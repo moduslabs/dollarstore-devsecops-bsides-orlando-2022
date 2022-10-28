@@ -56,6 +56,7 @@ Adding some example logging infrastructure
 which can be used to demonstrate a Checkov rule fail
 when disabled
 **/
+
 resource "aws_s3_bucket" "log_bucket" {
     bucket = "log-bucket"
     lifecycle { 
@@ -100,4 +101,5 @@ resource "aws_s3_bucket_versioning" "log_versioning" {
     versioning_configuration {
         status = "Enabled"
     }   
-} 
+}
+

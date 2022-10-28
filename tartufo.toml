@@ -1,0 +1,10 @@
+[tool.tartufo]
+repo-path = "."
+regex = true
+entropy = true
+exclude-path-patterns = [
+ {path-pattern = 'tartufo\.toml'},
+ # To not have to escape `\` in regexes, use single quoted
+ # TOML 'literal strings'
+ {path-pattern = '(.*)\.md'},
+]

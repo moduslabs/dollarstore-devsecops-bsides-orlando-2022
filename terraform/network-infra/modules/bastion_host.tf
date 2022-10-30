@@ -1,5 +1,6 @@
 resource "aws_security_group" "bastion_host_sg" {
     name   = "bastion-host-security-group"
+    description = "Allow inbound traffic on port 22"
     vpc_id = var.vpc_id
    
     ingress {

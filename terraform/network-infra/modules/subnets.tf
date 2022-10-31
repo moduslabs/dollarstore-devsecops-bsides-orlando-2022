@@ -1,4 +1,5 @@
 resource "aws_subnet" "public_subnets" { 
+    #checkov:skip=CKV_AWS_130:Disable rule as an example
     vpc_id  = var.vpc_id
     cidr_block = cidrsubnet(var.vpc_cidr_block, 8, 2 + count.index)
     availability_zone  = sort(var.availability_zones)[count.index]

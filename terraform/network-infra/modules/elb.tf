@@ -18,7 +18,13 @@
         target              = "TCP:8080"    
         interval            = 5 
     } 
-   
+ 
+    access_logs {
+        bucket  = aws_s3_bucket.log_bucket.bucket
+        enabled = true
+    }
+
+  
     tags = { 
     	Name = "jenkins_elb" 
     } 

@@ -7,6 +7,7 @@ variable "aws_region" {}
 variable "cidr_block" {}
 variable "private_subnets_count" {}
 variable "public_subnets_count" {}
+variable "ssl_cert_arn" {}
 
 
 provider "aws" { 
@@ -33,6 +34,7 @@ module "subnet_module" {
     public_subnets_count = var.public_subnets_count 
     private_subnets_count = var.private_subnets_count
     public_key = var.public_key
+    ssl_cert_arn = var.ssl_cert_arn
  }
 
 

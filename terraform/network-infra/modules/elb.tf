@@ -2,13 +2,14 @@
     subnets = [for subnet in aws_subnet.public_subnets : subnet.id]
     cross_zone_load_balancing = true 
     security_groups = [aws_security_group.elb.id] 
-     instances = [aws_instance.jenkins_main.id]
+    instances = [aws_instance.jenkins_main.id]
 
     listener { 
         instance_port     = 8080
         instance_protocol = "http"
-        lb_port           = 80
-        lb_protocol       = "http"
+        lb_port           = 443
+        lb_protocol       = "https"
+        ssl_certificate_id = var.ssl_cert_arn
      } 
     
      health_check { 

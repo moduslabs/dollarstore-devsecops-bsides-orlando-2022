@@ -39,6 +39,8 @@ module "subnet_module" {
 
 
 resource "aws_vpc" "jenkins_vpc" { 
+    #checkov:skip=CKV2_AWS_12:Example rule disabling
+    #checkov:skip=CKV2_AWS_11:Disable flow logs
     cidr_block  = var.cidr_block 
     enable_dns_support = true 
     enable_dns_hostnames = true

@@ -200,6 +200,21 @@ From a high-level the Terraform files are responsible for building:
 4. The PHP server for running our vulnerable webapp.
 
 
+
+### Adding a SSL cert
+
+Follow the steps here to manually create a subdomain:
+
+https://aws.amazon.com/premiumsupport/knowledge-center/create-subdomain-route-53/
+
+Then add the SSL cert like this:
+
+<steps>
+
+
+
+
+
 ## The PHP Application
 
 Based off of a simple tutorial here: https://code.tutsplus.com/tutorials/how-to-build-a-simple-rest-api-in-php--cms-37000

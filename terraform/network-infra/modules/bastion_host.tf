@@ -5,13 +5,15 @@ resource "aws_security_group" "bastion_host_sg" {
    
     ingress {
         protocol  = "tcp"
+        description = "Allow ingress from example VPN IP"
         from_port = 22
         to_port  = 22
         cidr_blocks = ["50.197.6.145/32"] /*change to your IP after deployment via the console*/
     }
 
     egress {
-    	protocol  = -1
+        protocol  = -1
+        description = "Allow access back out to the Internet"
         from_port = 0
         to_port   = 0
         cidr_blocks = ["0.0.0.0/0"] 

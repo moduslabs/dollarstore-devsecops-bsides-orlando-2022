@@ -19,7 +19,8 @@ resource "aws_instance" "jenkins_main" {
     root_block_device { 
         volume_type = "gp3" 
         volume_size = 30 
-        delete_on_termination = false 
+        delete_on_termination = false
+        encrypted = true
     }
     metadata_options {
         http_endpoint = "enabled"

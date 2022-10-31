@@ -49,6 +49,10 @@ resource "aws_instance" "bastion_host_server" {
         http_tokens   = "required"
     }
 
+    root_block_device {
+       encrypted = true
+    }
+
     tags = {
     	Name = "jenkins-bastion-host" 
     }

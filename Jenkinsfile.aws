@@ -84,6 +84,23 @@ pipeline {
                         }
                     }
                 }
+                stage ('Executing Horusec Scan'){
+                    steps {
+                        echo 'Executing Horusec Scans'
+                        script {
+                            docker.image('horuszup/horusec-cli:latest').inside("--entrypoint=''") {
+                                try{
+                                    sh '''
+                                       horusec start -p ./
+                                       ''' 
+                                } catch (err) {
+                                    throw err
+                                }
+                                    
+                            }
+                        }
+                    }
+                }
             }
         }
         stage('Deploy') {

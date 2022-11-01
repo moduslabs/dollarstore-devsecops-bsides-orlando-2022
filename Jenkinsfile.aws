@@ -39,8 +39,13 @@ pipeline {
                         echo 'Executing PHPMetrics'
                         script {
                             docker.image('herloct/phpmetrics:latest').inside("--entrypoint=''") {
-                                sh 'phpmetrics --config=phpmetrics.yaml ./php'
-                                junit skipPublishingChecks: true, testResults: 'results.xml'
+                                try {
+                                    sh 'phpmetrics --config=config.yml ./php'
+                                    junit skipPublishingChecks: true, testResults: 'results.xml'
+                                } catch (err) {
+                                    junit skipPublishingChecks: true, testResults: 'results.xml'
+                                    throw err
+                                }
                             }
                         }
                     }

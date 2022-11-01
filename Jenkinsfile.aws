@@ -69,7 +69,7 @@ pipeline {
                     steps {
                         echo 'Executing Git Secrets'
                         script {
-                            docker.image('moduscreate/alpine-git-secrets:latest').inside("--entrypoint=''") {
+                            docker.image('moduscreate/alpine-git-secrets:1.1').inside("--entrypoint=''") {
                                 try{
                                     sh '''
                                        git secrets --install

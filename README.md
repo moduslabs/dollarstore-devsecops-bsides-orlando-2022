@@ -212,9 +212,18 @@ Then add the SSL cert like this:
 1. Request a certificate
 2. Add the reference to DNS 
 3. Copy the Cert ARN to your tfsecrets file 
-4. Run a `terraform apply -var-file=secrets.tfvars`
-5. Cert should now be hooked up to the ELB 
-6. Access jenkins over https
+4. Cert should now be hooked up to the ELB 
+
+
+### Running the Terraform scripts
+
+Follow the steps in README:
+
+
+Next add the load balancer to the domain:
+
+https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-elb-load-balancer.html
+
 
 
 
@@ -296,6 +305,14 @@ https://tartufo.readthedocs.io/en/stable/
 
 tartufo.toml
 
+### Git-secrets
+
+Runs in pipeline or locally as pre-commit hook.
+
+
+### Horusec
+
+https://docs.horusec.io/docs/pt-br/tutorials/how-to-use-horusec-without-docker/
 
 
 ## Contributing

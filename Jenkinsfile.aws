@@ -40,6 +40,7 @@ pipeline {
                         script {
                             docker.image('herloct/phpmetrics:latest').inside("--entrypoint=''") {
                                 sh 'phpmetrics --config=phpmetrics.yaml --report-html=bsidesorlandoreport ./php'
+                                junit skipPublishingChecks: true, testResults: 'results.xml'
                             }
                         }
                     }

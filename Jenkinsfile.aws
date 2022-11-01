@@ -41,9 +41,9 @@ pipeline {
                             docker.image('herloct/phpmetrics:latest').inside("--entrypoint=''") {
                                 try {
                                     sh 'phpmetrics --config=config.yml ./php'
-                                    junit skipPublishingChecks: true, testResults: '/tmp/violations.xml'
+                                    junit skipPublishingChecks: true, testResults: 'results.xml'
                                 } catch (err) {
-                                    junit skipPublishingChecks: true, testResults: '/tmp/violations.xml'
+                                    junit skipPublishingChecks: true, testResults: 'results.xml'
                                     throw err
                                 }
                             }
@@ -55,7 +55,14 @@ pipeline {
                         echo 'Executing Tartufo'
                         script {
                             docker.image('godaddy/tartufo:latest').inside("--entrypoint=''") {
-                                sh '/venv/bin/tartufo scan-local-repo .'
+                                try{
+                                    sh '/venv/bin/tartufo -of json scan-local-repo .'
+                                    junit skipPublishingChecks: true, testResults: 'results.xml'
+                                } catch (err) {
+                                    junit skipPublishingChecks: true, testResults: 'results.xml'
+                                    throw err
+                                }
+                                    
                             }
                         }
                     }

@@ -91,7 +91,7 @@ pipeline {
                             docker.image('horuszup/horusec-cli:latest').inside("--entrypoint=''") {
                                 try{
                                     sh '''
-                                       horusec start -p ./
+                                       horusec start -p ./ --disable-docker="true"
                                        ''' 
                                 } catch (err) {
                                     throw err

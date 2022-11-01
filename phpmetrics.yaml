@@ -1,0 +1,7 @@
+---
+report:
+    violations: "/tmp/violations.xml"
+
+plugins:
+    junit:
+        file: "/tmp/junit.xml" # if defined, analyze junit report

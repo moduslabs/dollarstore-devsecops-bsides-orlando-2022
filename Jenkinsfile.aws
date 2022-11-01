@@ -56,10 +56,27 @@ pipeline {
                         script {
                             docker.image('godaddy/tartufo:latest').inside("--entrypoint=''") {
                                 try{
-                                    sh '/venv/bin/tartufo -of json scan-local-repo .'
-                                    junit skipPublishingChecks: true, testResults: 'results.xml'
+                                    sh '/venv/bin/tartufo -of json -od ./tartufo_results scan-local-repo .'
                                 } catch (err) {
-                                    junit skipPublishingChecks: true, testResults: 'results.xml'
+                                    throw err
+                                }
+                                    
+                            }
+                        }
+                    }
+                }
+                stage ('Executing Git Secrets Scan'){
+                    steps {
+                        echo 'Executing Git Secrets'
+                        script {
+                            docker.image('moduscreate/alpine-git-secrets:latest').inside("--entrypoint=''") {
+                                try{
+                                    sh '''
+                                       git secrets --install
+                                       git secrets --register-aws
+                                       git secrets --scan
+                                       ''' 
+                                } catch (err) {
                                     throw err
                                 }
                                     

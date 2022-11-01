@@ -72,7 +72,7 @@ pipeline {
                             docker.image('moduscreate/alpine-git-secrets:1.1').inside("--entrypoint=''") {
                                 try{
                                     sh '''
-                                       git secrets --install
+                                       git secrets --install -f
                                        git secrets --register-aws
                                        git secrets --scan
                                        ''' 

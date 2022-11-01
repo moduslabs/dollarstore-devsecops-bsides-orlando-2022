@@ -9,6 +9,8 @@ resource "aws_key_pair" "jenkins_key" {
 }
 
 resource "aws_instance" "jenkins_main" {
+    #checkov:skip=CKV_AWS_135:Disable EBS optimization as an example
+    #checkov:skip=CKV_AWS_79:Disable metadata check as an example
     ami  = data.aws_ami.jenkins_ami.id
     instance_type = "t2.large"
     key_name = aws_key_pair.jenkins_key.key_name

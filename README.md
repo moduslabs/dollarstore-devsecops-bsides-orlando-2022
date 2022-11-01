@@ -138,8 +138,6 @@ Dashboard > Manage Jenkins > Manage Plugins > Available (tab) > docker-workflow.
 
 
 
-
-
 # How it works
 
 {Describe how it works. Include images if possible.}
@@ -223,8 +221,6 @@ Follow the steps in README:
 Next add the load balancer to the domain:
 
 https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-elb-load-balancer.html
-
-
 
 
 ## The PHP Application
@@ -312,23 +308,28 @@ Runs in pipeline or locally as pre-commit hook.
 
 ### Horusec
 
+We are going to run the basic version without the supplementary container tools from inside Jenkins.
+
+The instructions for this are located at:
 https://docs.horusec.io/docs/pt-br/tutorials/how-to-use-horusec-without-docker/
+
+The supported scans are:
+https://docs.horusec.io/docs/pt-br/cli/analysis-tools/open-source-horusec-engine/
+
 
 
 ## Contributing
 
-{How can the community contribute}
+To add to this project please fork the repository and create a pull request.
 
 # Modus Create
-
-{replace PROJECT_NAME in links below with the name of this project}
 
 [Modus Create](https://moduscreate.com) is a digital product consultancy. We use a distributed team of the best talent in the world to offer a full suite of digital product design-build services; ranging from consumer facing apps, to digital migration, to agile development training, and business transformation.
 
 <a href="https://moduscreate.com/?utm_source=labs&utm_medium=github&utm_campaign=PROJECT_NAME"><img src="https://res.cloudinary.com/modus-labs/image/upload/h_80/v1533109874/modus/logo-long-black.svg" height="80" alt="Modus Create"/></a>
 <br />
 
-This project is part of [Modus Labs](https://labs.moduscreate.com/?utm_source=labs&utm_medium=github&utm_campaign=PROJECT_NAME).
+This project is part of [Modus Labs](https://labs.moduscreate.com/?utm_source=labs&utm_medium=github&utm_campaign=bsidesorlando22).
 
 <a href="https://labs.moduscreate.com/?utm_source=labs&utm_medium=github&utm_campaign=PROJECT_NAME"><img src="https://res.cloudinary.com/modus-labs/image/upload/h_80/v1531492623/labs/logo-black.svg" height="80" alt="Modus Labs"/></a>
 

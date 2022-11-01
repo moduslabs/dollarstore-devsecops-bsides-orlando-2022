@@ -209,9 +209,12 @@ https://aws.amazon.com/premiumsupport/knowledge-center/create-subdomain-route-53
 
 Then add the SSL cert like this:
 
-<steps>
-
-
+1. Request a certificate
+2. Add the reference to DNS 
+3. Copy the Cert ARN to your tfsecrets file 
+4. Run a `terraform apply -var-file=secrets.tfvars`
+5. Cert should now be hooked up to the ELB 
+6. Access jenkins over https
 
 
 

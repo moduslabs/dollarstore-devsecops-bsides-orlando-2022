@@ -1,14 +1,14 @@
-resource "aws_security_group" "elb" { 
+resource "aws_security_group" "elb" {
     name   = "ecs-elb-security-group"
-    description "Load balancer SG for Jenkins and Bastion traffic"
+    description = "Load balancer SG for Jenkins and Bastion traffic"
     vpc_id = var.vpc_id 
 
     #checkov:skip=CKV_AWS_260:Allow traffic between the ELB and Jenkins instance on port 80    
     ingress { 
         protocol    = "tcp" 
         description = "Access on port 80 to Jenkins"
-        from_port   = 80 
-        to_port     = 80 
+        from_port   = 443
+        to_port     = 443
         cidr_blocks = ["0.0.0.0/0"] 
      } 
      egress { 
@@ -37,7 +37,7 @@ resource "aws_security_group" "jenkins_main_sg" {
         from_port = "22" 
         to_port = "22" 
         protocol = "tcp" 
-        decription = "SSH traffic for admin"
+        description = "SSH traffic for admin"
         security_groups = [aws_security_group.bastion_host_sg.id]
     }
 

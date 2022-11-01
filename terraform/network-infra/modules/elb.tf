@@ -20,10 +20,10 @@
         interval            = 5 
     } 
  
-    access_logs {
+    /* access_logs {
         bucket  = aws_s3_bucket.log_bucket.bucket
-        enabled = true
-    }
+         enabled = true
+     } */
 
   
     tags = { 

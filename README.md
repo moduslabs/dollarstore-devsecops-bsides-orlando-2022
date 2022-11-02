@@ -230,9 +230,9 @@ Then add the SSL cert like this:
 
 2. Add the reference to DNS 
 
-3. Copy the Cert ARN to your tfsecrets file 
+3. Copy the Cert ARN. You wll need to add this to your .tfsecrets file in the next stage 
 
-4. Cert should now be hooked up to the ELB 
+4. Cert can now be hooked up to the ELB via Terraform 
 
 
 ## The Terraform code
@@ -258,6 +258,29 @@ You will also need Packer installed to create the AMI. Instructions for this are
 
 Once installation is complete you are ready to begin.
 
+
+### Building the Jenkins AMI
+
+The Terraform scripts will reference the AMI that you have Jenkins installed on. Included in this repository is a simple Packer configuration that will build the AMI and store it in your AWS account.
+
+In order for this to work you will need to have a VPC already in place. This creates something of a chicken and egg problem, as in order to create the VPC for Jenkins, you need the AMI reference. 
+
+The easiest way to do this is to create a VPC manually through the web console, and then point Packer to it. For further information on this, please refer to: $
+
+```
+AWS Marketplace > Discover products
+```
+
+Use the `Search AWS Marketplace products` field to search for Jenkins.
+
+There are multiple options, many of which would be very cheap or practically free for testing these instructions out.
+
+Alternatively, you could create an AMI manually by installing Jenkins on an EC2 instance and taking an AMI snapshot.
+
+For further instructions on this, refer to: https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/ 
+
+
+Search results
 
 ### Running the Terraform scripts
 

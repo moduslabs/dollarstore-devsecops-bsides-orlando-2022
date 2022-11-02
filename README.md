@@ -338,7 +338,7 @@ Create a Jenkins credential:
 
 4. Secret - paste API key
 
-5. ID: checkov-api-key
+5. ID: `checkov-api-key`
 
 6. Description - say what it is
 
@@ -355,10 +355,20 @@ View Console log, should see some errors. We need to fix these!
 
 ### Cloc Stage
 
-Will see files in repo.
+Cloc can be used to ascertain what files existing in a rpeository. This can be a great and quick way of looking for things that shouldn't be in the repostiroy, and could contain security breaches. Examples include:
+
+1. Word docs with passwords
+
+2. Spreadsheets with passwords
+
+3. Binary files with hard coded secrets 
+
+
+When this stage executes, you can see in the Jenkins console the findings.
 
 
 ### Checov stage
+
 
 Will see errors in Terraform files.
 
@@ -376,9 +386,10 @@ They are fixed by doing the following:
 
 https://phpmetrics.org/index.html
 
-Install composer
+If you installed PHPMetrics locally, we also installed `composer` alongside PHPMetrics, if you are using the AWS environment option, we have a container in place that executes PHPMetrics.
 
-Install PHpMetrics
+The key difference between the local and cloud installation is the Installation step, which isn't required in Jenkinsfile.aws since the container is leveraged.
+
 
 Execute via Pipeline against target code base.
 
@@ -388,7 +399,7 @@ Execute via Pipeline against target code base.
 
 https://tartufo.readthedocs.io/en/stable/
 
-tartufo.toml
+`tartufo.toml`
 
 ### Git-secrets
 

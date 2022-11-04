@@ -43,8 +43,7 @@ pipeline {
                 stage ('Horusec Installation'){
                     steps {
                         echo 'Horusec Installation'
-                        sh 'curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
-'
+                        sh 'curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest'
                     }
                 }
             }

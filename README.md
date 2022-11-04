@@ -166,6 +166,29 @@ Dashboard > Manage Jenkins > Manage Plugins > Available (tab) > docker-workflow.
 You should now be all set to start building CI/CD pipelines in Jenkins.
 
 
+If you hit issues with Docker not being found when you run the pipeline, edit: 
+
+```
+/usr/local/opt/jenkins-lts/homebrew.mxcl.jenkins-lts.plist
+```
+
+Add:
+
+```
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+```
+
+Then restart:
+
+```
+brew services restart jenkins-lts
+```
+
+
 ### Windows
 
 TBD

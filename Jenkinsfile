@@ -40,13 +40,6 @@ pipeline {
                         sh 'brew install git-secrets'
                     }
                 }
-                stage ('Horusec Installation'){
-                    steps {
-                        echo 'Horusec Installation'
-                        sh 'curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest'
-
-                    }
-                }
             }
         }
         stage('Execute') {
@@ -87,8 +80,19 @@ pipeline {
                 }
                 stage ('Executing Horusec Scan'){
                     steps {
-                        echo 'Executing Horusec'
-                        sh 'horusec start -p="./" -e="true"'
+                        echo 'Executing Horusec Scans'
+                        script {
+                            docker.image('horuszup/horusec-cli:latest').inside("--entrypoint=''") {
+                                try{
+                                    sh '''
+                                       horusec start -p ./ --disable-docker="true"
+                                       ''' 
+                                } catch (err) {
+                                    throw err
+                                }
+                                    
+                            }
+                        }
                     }
                 }
             }

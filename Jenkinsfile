@@ -34,6 +34,19 @@ pipeline {
                         sh 'pip3 install tartufo'
                     }
                 }
+                stage ('Git Secrets Installation'){
+                    steps {
+                        echo 'Installing Amazon Git Secrets'
+                        sh 'brew install git-secrets'
+                    }
+                }
+                stage ('Horusec Installation'){
+                    steps {
+                        echo 'Horusec Installation'
+                        sh 'curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
+'
+                    }
+                }
             }
         }
         stage('Execute') {
@@ -60,6 +73,22 @@ pipeline {
                     steps {
                         echo 'Executing Tartufo'
                         sh 'tartufo scan-folder ./php'
+                    }
+                }
+                stage ('Executing Git Secrets Scan'){
+                    steps {
+                        echo 'Executing AWS Git Secrets'
+                        sh '''
+                           git secrets --install -f
+                           git secrets --register-aws
+                           git secrets --scan
+                           '''
+                    }
+                }
+                stage ('Executing Horusec Scan'){
+                    steps {
+                        echo 'Executing Horusec'
+                        sh 'horusec start -p .'
                     }
                 }
             }

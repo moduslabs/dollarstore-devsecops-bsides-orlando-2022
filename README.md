@@ -191,7 +191,30 @@ brew services restart jenkins-lts
 
 ### Windows
 
-TBD
+Instructions here are based upon the Jenkins documentation at: https://www.jenkins.io/doc/book/installing/windows/
+
+1. Start by grabbing the MSI installer from the downlaods page: https://www.jenkins.io/download/#downloading-jenkins 
+
+2. Once downloaded, run the installer and select a suitable location for it to install Jenkins into e.g. `c:\ program Files\Jenkins`
+
+3. Run the Jenkins service using a `local` or `domain` user. Specify the user name and password for running Jenkins then click on `Test Credentials` to test them
+
+4. Select the port as `8080` - make sure you have nothing else runnong on this port locally
+
+5. Select the Java home directory. This is the location of `JDK` or `JRE`. If you don't have it installed already, follow the installation prompts.
+
+6. Configure any other services tha need to be installed, such as Firewall Exceptions to run on port `8080`
+
+7. Click `Install` to kick off the process
+
+8. Once installed you will need to obtain the default password from `<path\to\Jenkins>\secrets\iniitalAdminPassword`
+
+9. Enter this into the `Administrator password` text field
+
+10. Select `Install suggested plugins`
+
+You are now ready to setup your new admin user and get started.
+
 
 ### Linux
 

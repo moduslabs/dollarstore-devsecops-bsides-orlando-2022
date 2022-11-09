@@ -420,13 +420,22 @@ Execute via Pipeline against target code base.
 
 ### Tartufo 
 
-https://tartufo.readthedocs.io/en/stable/
+Tartufo is a project run by GoDaddy that acts as a wrapper for TurrfleHog, and allows configuration of secrets scanning via a `.toml` file.
+
+You can find background on the tool at: https://tartufo.readthedocs.io/en/stable/
+
+For this project, configuration including exlusions for false positives are added to the following file:
 
 `tartufo.toml`
 
+
 ### Git-secrets
 
-Runs in pipeline or locally as pre-commit hook.
+The git-secdrets library built by AWS labs, allows for the detection of AWS API keys. It can be run in a pipeline or locally as pre-commit hook.
+
+Further documentation on the tool plus the source code can be foudn at: https://github.com/awslabs/git-secrets
+
+A containerized version of thistool running on Alpine is available at: https://registry.hub.docker.com/r/moduscreate/alpine-git-secrets 
 
 
 ### Horusec

@@ -11,6 +11,11 @@ Source code and documentation for the BSides Orlando 2022 (11/18 - 11/19) talk: 
   - [Talk outline](#talk-outline)
 - [Getting Started](#getting-started)
   - [Local setup](#local-setup)
+    - [MacOS Brew](#macos-brew)
+    - [Windows](#windows)
+    - [Linux](#linux)
+  - [Cloud](#cloud)
+    - [AWS Installation Instructions](#aws-installation-instructions)
 - [Developing](#developing)
   - [Prerequisites](#prerequisites)
   - [Running the Pipeline](#running-the-pipelines)
@@ -251,7 +256,7 @@ The AWS installation instructions walk you through how to setup an environment i
 At the completion of the infrastructure setup you will have a fully built Jenkins CI/CD environment that can be easily added to or destroyed via Terraform. 
 
 
-### Pre-requisities
+#### Pre-requisites
 
 To follow along in the cloud, you will need:
 
@@ -264,7 +269,7 @@ To follow along in the cloud, you will need:
 4. A domain name/subdomain configured as a Hosted zone in your AWS account. A number of services offer free domain registration or domains for as little as $0.01. Note: if you do not want to setup a domain and SSL cert, and map these to the load balancer, instructions will be provided on disabling this portion of the Terraform code.
 
 
-### Adding a SSL cert
+#### Adding a SSL cert
 
 Follow the steps here to manually create a subdomain:
 

@@ -47,7 +47,7 @@ This talk will walk the audience through how to build a variety of simple CI/CD 
 
 * PHPMetrics - considering Cyclomatic Complexity from a security perspective
 
-* Tortufo - GoDaddy’s free Secrets Scanning tool
+* Tartufo - GoDaddy’s free Secrets Scanning tool
 
 * Git-secrets - Prevent your AWS secrets from hitting the repository
 
@@ -418,7 +418,7 @@ Cloc can be used to ascertain what files existing in a rpeository. This can be a
 When this stage executes, you can see in the Jenkins console the findings.
 
 
-### Checov stage
+### Checkov stage
 
 
 Will see errors in Terraform files.

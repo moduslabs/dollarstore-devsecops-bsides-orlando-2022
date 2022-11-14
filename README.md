@@ -223,7 +223,21 @@ You are now ready to setup your new admin user and get started.
 
 ### Linux
 
-TBD
+Jenkins can be installed on Linux and the current distros are supported:
+
+1. Debian/Ubuntu - https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
+
+2. Fedora - https://www.jenkins.io/doc/book/installing/linux/#fedora
+
+3. Red Hat/CentOS - https://www.jenkins.io/doc/book/installing/linux/#red-hat-centos
+
+For the cloud infrastructure option later in this README, Amazon Linux is used.
+
+The official Jenkins installation instructions for supported versions of Linux are available at:
+
+https://www.jenkins.io/doc/book/installing/linux/
+
+
 
 ## Cloud
 

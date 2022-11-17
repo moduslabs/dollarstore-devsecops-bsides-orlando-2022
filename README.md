@@ -16,6 +16,9 @@ Source code and documentation for the BSides Orlando 2022 (11/18 - 11/19) talk: 
     - [Linux](#linux)
   - [Cloud](#cloud)
     - [AWS Installation Instructions](#aws-installation-instructions)
+    - [The Terraform Code](#the-terraform-code)
+    - [Building the Jenkins AMI](#building-the-jenkins-ami)
+    - [Deploying the Terraform scripts](#deploying-the-terraform-scripts)
 - [Developing](#developing)
   - [Prerequisites](#prerequisites)
   - [Running the Pipeline](#running-the-pipelines)
@@ -299,8 +302,7 @@ Then add the SSL cert like this:
 
 4. Cert can now be hooked up to the ELB via Terraform 
 
-
-## The Terraform code
+### The Terraform code
 
 A separate README is provided with a detailed description of the Terraform code and what it is does.
 
@@ -347,7 +349,7 @@ For further instructions on this, refer to: https://www.jenkins.io/doc/tutorials
 
 Search results
 
-### Running the Terraform scripts
+### Deploying the Terraform scripts
 
 Follow the instructions at: https://github.com/moduslabs/dollarstore-devsecops-bsides-orlando-2022/blob/master/terraform/README.md
 then return back here. 
@@ -357,66 +359,101 @@ then return back here.
 https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-elb-load-balancer.html
 
 
+# Jenkins 
+
+Once you have Jenkins up and running either locally or in the Cloud, you can begin to experiment with adding pipelines and injecting secrtes into your pipelines, so you can cmmunicate with third party services.
+
+As a pre-requisite to this section, if you wish to integrate the Checkov IaC scanner into your CI/CD pipeline, please create an account as you will need to generate an API key later in the instructions.
+
+You can read more on account creation at: https://www.checkov.io/
+
+If you have further questions on Jenkins, you can always refer to: https://www.jenkins.io/doc/
+
+
 ## Configure the Pipeline
+
+The first thing we intend to do is setup a pipeline for running our CI/CD processes. This pipeline will point to our code repository and yse the Jenkinsfiles located in it, based upon the environment you are working in.
+
+Get started by following these steps:
+
 
 1. Make sure you used a forked version of this repository and cloned it (you'll need it again shortly)
 
 2. Login to Jenkins
 
-3. Call your pipeline bsidesorlando2022
+3. Create a new pipeline and call your pipeline `bsidesorlando2022`
 
-4. Description - add a description of your choosing
+4. `Description` - add a description of your choosing e.g. `BSides Orlando Talk`
 
 5. Under pipeline select `Pipeline script from SCM`
 
-6. Select `Git` from SCM and add the repo location. Note, if you have a private fork you will need to enter login credentials 
+6. Select `Git` from SCM and add the repository location. Note, if you have a private fork you will need to enter login credentials 
 
-7. Add the path to the Jenkinsfile 
+7. Add the path to the Jenkinsfile in your repository you plan to use e.g. `Jenkinsfile.aws` 
 
-8. Save the file. 
+8. Save your pipeline
 
-9. `Build Now`
+9. Next select `Build Now`
 
 10. Expect to see a few errors, as we need to generate an API key for Checkov.
 
 
-
 ## Running the Pipelines
 
-Start with adding in an API key.
+We are going to start with adding in an API key. This can be generated from the Bridgecrew website and is used by Checkov to communicate with the bridgecrew API to generate findings information. For more information/instructions on generating the API Key in yor account, refer to: https://docs.bridgecrew.io/docs/get-api-token
 
-Add the Env var to Jenkins:
+Once you have your API key we are now going to add this to Jenkins.
 
-`This project is parameterized`
+Start by selecting the pipeline you just created and select the edit option.
 
-Select: `Credentials parameter`
+Update as follows:
 
-Create a Jenkins credential:
+1. Choose `This project is parameterized`
+
+2. Next select: `Credentials parameter`
+
+3. We are now going to use the create a Jenkins credential feature:
 
 `Jenkins Credentials Provider: Jenkins`
 
-1. Domain, leave default
+From the options add:
 
-2. Kind - secret text
+  i. Domain, leave default
 
-3. Scope: Global
+  ii. Kind - secret text
 
-4. Secret - paste API key
+  iii. Scope: Global
 
-5. ID: `checkov-api-key`
+  iv. Secret - paste your Checkov API key
 
-6. Description - say what it is
+  v. ID: `checkov-api-key`
 
-Pop up closes, set the `Default Value` to the BSides API Key 
+  vi. Description - say what it is e.g. `Bsides Orlando API Key`
+
+4. Save these changes. When the pop up closes, set the `Default Value` to the BSides Orlando API Key you just created. 
 
 
-Edit the Jenkins file and update the Checkov call to include your API key environment var name if you called it something different.
+With the refer to the API key now available in the pipeline, the final step is going to be tell our Jenkinsfile where it can find the API key when it executes a stage of the build pipeline.
+
+Edit the Jenkinsfile for the environment you are working in e.g. `Jenkinsfile.aws` and update the Checkov call to include your API key environment var name. Save the file and commit and push back to the repository.
+
+Once your file is present back in GitHub we can now go back to Jenkins.
+
+Select your pipeline and then execute the option:
 
 
-Run build with Parameters.
+`Run build with Parameters.`
 
-View Console log, should see some errors. We need to fix these!
+You should now see you can select your API key to be included when the pipeline is run. 
 
+Our CI/CD process is now executing.
+
+View the `Console log` for your pipeline, should see some errors. We need to fix these!
+
+
+## Pipeline Stages
+
+Our CI/CD pipeline located in the Jenkinsfile is made up of multiple stages. Each stage is responsible for executing a specific task, such as running a security tool. 
 
 ### Cloc Stage
 
